@@ -4,43 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="LogoGDM.jpeg">
     <link rel="stylesheet" href="estilos.css">
     <title>Contacto|Gestionador de Mensajes</title>
 
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(90deg, #0f5739, #3d8e66, #45c9a4, #46b5a9, #52c9eb);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
-        h1 {
-            color: white;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2.5rem;
-        }
-
     
         .descripcion {
             color: white;
             text-align: center;
             margin-bottom: 30px;
             font-size: 1.1rem;
-        }
+        } 
 
         .container {
             max-width: 650px;
@@ -108,46 +85,56 @@
             background: #08452d;
         }
 
-        @media(max-width:600px){
-            .footer {
-            background-color: #000000;
-            width: 100%;
-            height: auto;
-            padding: 10px;
-            text-align: center;
-            margin-top: 20px;
-        }   
-            .p {
-            color: white;
-            font-size: 1.2rem;
-        }
-
-
         @media(max-width:600px) {
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .container {
-                padding: 20px;
-            }
-
-            .contacto {
-                flex-direction: column;
+            .footer {
+                background-color: #000000;
+                width: 100%;
+                height: auto;
+                padding: 10px;
                 text-align: center;
+                margin-top: 20px;
             }
 
+            .p {
+                color: white;
+                font-size: 1.2rem;
+            }
+
+
+            @media(max-width:600px) {
+
+                h1 {
+                    font-size: 2rem;
+                }
+
+                .container {
+                    padding: 20px;
+                }
+
+                .contacto {
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+            }
         }
-    }
+
+      
     </style>
 
 </head>
 
 <body>
 
-    
-    < nav class="navbar">
+    <h1>Contáctame</h1>
+<br>
+ <p class="descripcion">
+            Si deseas comunicarte conmigo, puedes hacerlo por cualquiera de estos medios.
+        </p>
+
+        <br>
+
+    <nav class="navbar">
 
         <div class="direccion">
             <a href="index.html">Inicio</a>
@@ -167,14 +154,10 @@
 
     </nav>
 
+    <br>
+
     <div>
-
-        <h1>Contáctame</h1>
-
-        <p class="descripcion">
-            Si deseas comunicarte conmigo, puedes hacerlo por cualquiera de estos medios.
-        </p>
-
+       
         <div class="container">
 
             <div class="contacto">
@@ -221,11 +204,22 @@
                 </div>
             </div>
 
+            <div class="contacto">
+                <i class="fab fa-linkedin"></i>
+
+                <div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/uriel-uncos-005b1439a/" target="_blank">
+                        linkedin.com/in/uriel-uncos
+                    </a>
+                </div>
+  </div>
+
             <a class="boton" href="index.html">
                 Volver al Inicio
             </a>
 
-        </div>
+      
 
     </div>
 
