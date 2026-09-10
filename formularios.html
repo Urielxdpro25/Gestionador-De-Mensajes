@@ -11,7 +11,6 @@
     <title>Formularios|Gestionador de Mensajes</title>
 
     <style>
-     
         .form {
             background: rgba(255, 255, 255, .95);
             width: 100%;
@@ -74,6 +73,21 @@
             transform: scale(1.02);
         }
 
+        .Forms {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .Forms {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+
+            }
+
+        }
+
         #mensajeCopiado {
             position: fixed;
             bottom: 20px;
@@ -86,15 +100,15 @@
             display: none;
             font-weight: bold;
         }
-
-     
     </style>
 
 </head>
 
 <body>
 
-    
+    <h1 class="h1">Formularios</h1>
+
+
     <nav class="navbar">
 
         <div class="direccion">
@@ -117,64 +131,71 @@
 
     <br>
 
-    <h1>Gestionador de Mensajes</h1>
+    <div class="Forms"> <!--los dos formularios-->
 
-    <form id="form-conferenciante" class="form">
+        <form id="form-conferenciante" class="form">
 
-        <fieldset>
+            <fieldset>
 
-            <legend>Información Conferenciante</legend>
+                <legend>Información Conferenciante</legend>
 
-            <label for="nombre">Nombre y apellido Conferenciante:</label>
-            <input type="text" id="nombre">
-
-
-            <label for="titulo">Título Conferencia:</label>
-            <input type="text" id="titulo">
-
-            <label for="numero">Número Conferencia:</label>
-            <input type="text" id="numero">
-
-            <label for="titulo-Cantico">Título Cántico:</label>
-            <input type="text" id="titulo-Cantico">
-
-            <label for="numero-Cantico">Número Cántico:</label>
-            <input type="text" id="numero-Cantico">
-
-            <label for="nombre-Congregacion">Nombre Congregación Conferenciante:</label>
-            <input type="text" id="nombre-Congregacion">
-
-        </fieldset>
-
-    </form>
+                <label for="nombre">Nombre y apellido Conferenciante:</label>
+                <input type="text" id="nombre">
 
 
-    <form id="form-mensaje" class="form">
+                <label for="titulo">Título Conferencia:</label>
+                <input type="text" id="titulo">
 
-        <fieldset>
+                <label for="numero">Número Conferencia:</label>
+                <input type="text" id="numero">
 
-            <legend>Información del Mensaje</legend>
+                <label for="titulo-Cantico">Título Cántico:</label>
+                <input type="text" id="titulo-Cantico">
 
-            <label for="nom-Presidente" class="presidente">Nombre y Apellido Presidente:</label>
-            <input type="text" id="nom-Presidente">
+                <label for="numero-Cantico">Número Cántico:</label>
+                <input type="text" id="numero-Cantico">
 
-            <label for="oracion-Ini">Oración Inicial:</label>
-            <input type="text" id="oracion-Ini">
+                <label for="nombre-Congregacion">Nombre Congregación Conferenciante:</label>
+                <input type="text" id="nombre-Congregacion">
 
-            <label for="nom-Lector">Nombre y Apellido Lector:</label>
-            <input type="text" id="nom-Lector">
+            </fieldset>
 
-            <label for="oracion-Fin">Oración Final:</label>
-            <input type="text" id="oracion-Fin">
+        </form>
 
-            <button type="button" class="btn" onclick="copiarFormulario('form-mensaje')">
-                Copiar al Portapapeles
-            </button>
 
-        </fieldset>
-    </form>
+        <form id="form-mensaje" class="form">
 
-    <button class="btn" onclick="window.location.href='index.html'">Volver al Inicio</button> 
+            <fieldset>
+
+                <legend>Información del Mensaje</legend>
+
+                <label for="nom-Presidente" class="presidente">Nombre y Apellido Presidente:</label>
+                <input type="text" id="nom-Presidente">
+
+                <label for="oracion-Ini">Oración Inicial:</label>
+                <input type="text" id="oracion-Ini">
+
+                <label for="nom-Lector">Nombre y Apellido Lector:</label>
+                <input type="text" id="nom-Lector">
+
+                <label for="oracion-Fin">Oración Final:</label>
+                <input type="text" id="oracion-Fin">
+
+
+
+            </fieldset>
+        </form>
+
+
+    </div><!--div contendor de los 2 formularios-->
+
+    <button type="button" class="btn" onclick="copiarFormulario('form-mensaje')">
+        Copiar al Portapapeles
+    </button>
+
+    <br>
+    <button class="btn" onclick="window.location.href='index.html'">Volver al Inicio</button>
+
     <div id="mensajeCopiado">
         ¡Información copiada al portapapeles!
     </div>
@@ -190,8 +211,8 @@
     <script>
         function copiarFormulario() {
 
-    // 1. Construcción de la cadena con formato estructurado
-    const texto = ` Hola  ${document.getElementById("nom-Presidente").value}, aquí tienes la información del conferenciante:
+            // 1. Construcción de la cadena con formato estructurado
+            const texto = ` Hola  ${document.getElementById("nom-Presidente").value}, aquí tienes la información del conferenciante:
 
 Información del conferenciante:
 Nombre y Apellido Conferenciante: ${document.getElementById("nombre").value}
@@ -207,21 +228,21 @@ Oración Inicial: ${document.getElementById("oracion-Ini").value}
 Nombre y Apellido Lector: ${document.getElementById("nom-Lector").value}
 Oración Final: ${document.getElementById("oracion-Fin").value}`;
 
-    // 2. Copiar al portapapeles y mostrar feedback al usuario
-    navigator.clipboard.writeText(texto)
-        .then(() => {
-            const mensajeCopiado = document.getElementById("mensajeCopiado");
-            mensajeCopiado.style.display = "block";
-            
-            // Oculta el mensaje automáticamente después de 3 segundos
-            setTimeout(() => {
-                mensajeCopiado.style.display = "none";
-            }, 3000);
-        })
-        .catch(err => {
-            console.error("Error al copiar el texto: ", err);
-        });
-}
+            // 2. Copiar al portapapeles y mostrar feedback al usuario
+            navigator.clipboard.writeText(texto)
+                .then(() => {
+                    const mensajeCopiado = document.getElementById("mensajeCopiado");
+                    mensajeCopiado.style.display = "block";
+
+                    // Oculta el mensaje automáticamente después de 3 segundos
+                    setTimeout(() => {
+                        mensajeCopiado.style.display = "none";
+                    }, 3000);
+                })
+                .catch(err => {
+                    console.error("Error al copiar el texto: ", err);
+                });
+        }
 
 
         if ("serviceWorker" in navigator) {

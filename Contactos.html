@@ -11,13 +11,12 @@
 
 
     <style>
-    
         .descripcion {
             color: white;
             text-align: center;
             margin-bottom: 30px;
             font-size: 1.1rem;
-        } 
+        }
 
         .container {
             max-width: 650px;
@@ -27,10 +26,15 @@
             border-radius: 20px;
             padding: 30px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
         }
 
         .contacto {
             display: flex;
+            justify-content: center;
             align-items: center;
             gap: 15px;
             background: rgba(255, 255, 255, .2);
@@ -53,13 +57,13 @@
         }
 
         .contacto h3 {
-            color: white;
+            color: rgb(1, 1, 1);
             margin-bottom: 5px;
         }
 
         .contacto a,
         .contacto p {
-            color: white;
+            color: rgb(0, 0, 0);
             text-decoration: none;
             word-break: break-word;
         }
@@ -101,6 +105,7 @@
             }
 
 
+
             @media(max-width:600px) {
 
                 h1 {
@@ -109,6 +114,7 @@
 
                 .container {
                     padding: 20px;
+
                 }
 
                 .contacto {
@@ -117,22 +123,22 @@
                 }
 
             }
-        }
 
-      
+            .container{
+                 display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(auto, 1fr);
+            gap: 20px;
+            }
+        }
     </style>
 
 </head>
 
 <body>
 
-    <h1>Contáctame</h1>
+        <h1 class="h1">Contacto</h1>
 <br>
- <p class="descripcion">
-            Si deseas comunicarte conmigo, puedes hacerlo por cualquiera de estos medios.
-        </p>
-
-        <br>
 
     <nav class="navbar">
 
@@ -156,8 +162,16 @@
 
     <br>
 
+    <br>
+    <p class="descripcion">
+        Si deseas comunicarte conmigo, puedes hacerlo por cualquiera de estos medios.
+    </p>
+
+
+    <br>
+
     <div>
-       
+
         <div class="container">
 
             <div class="contacto">
@@ -213,19 +227,19 @@
                         linkedin.com/in/uriel-uncos
                     </a>
                 </div>
-  </div>
+            </div>
 
             <a class="boton" href="index.html">
                 Volver al Inicio
             </a>
 
-      
 
-    </div>
 
-    <footer class="footer">
-        <p class="p">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
-    </footer>
+        </div>
+
+        <footer class="footer">
+            <p class="p">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
+        </footer>
 
 </body>
 
