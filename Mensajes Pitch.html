@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="logoGDM.jpeg">
+    <link rel="icon" type="image/png" href="LogoGDM.jpeg">
     <link rel="stylesheet" href="estilos.css">
     <meta name="theme-color" content="#0f5739">
     <title>Mensajes Pitch|Gestionador de Mensajes</title>
@@ -57,12 +57,6 @@
             box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
         }
 
-        .p {
-            color: #0f5739;
-            font-size: 1rem;
-            margin: 0;
-            line-height: 1.4;
-        }
 
         @media (max-width: 900px) {
             .contenedor {
@@ -81,10 +75,10 @@
             }
 
             .contenedor {
-                flex-direction: column;
-                align-items: stretch;
+                display: block;
                 padding: 12px;
                 gap: 12px;
+                
             }
         }
 
@@ -99,10 +93,6 @@
             box-sizing: border-box;
         }
 
-        .FP {
-            color: white;
-            font-size: 15px;
-        }
 
         .select {
             max-width: 1000px;
@@ -117,6 +107,12 @@
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             display: block;
+        }
+
+        .mp {
+            color: #0f5739;
+            font-size: 1.2rem;
+
         }
 
         .select:hover {
@@ -147,11 +143,12 @@
             background-color: #0a3a26;
         }
 
-        .input{
-            width: auto;
+        .input {
+            width: 250px;
             height: 25px;
         }
-        .input:focus{
+
+        .input:focus {
             background-color: #4fe8a8;
         }
     </style>
@@ -167,14 +164,18 @@
     <br>
 
     <main>
-        <h1 class="h1">Mensajes Pitch</h1>
 
+        <br>
+
+        <h4 class="h1">Zona de Mensajes</h4>
+
+
+        <br>
         <div class="contenedor" id="contenedorNombre">
-            <input id="nombreConferenciante" class="input" placeholder="Nombre y apellido del conferenciante" >
+            <input id="nombreConferenciante" class="input" placeholder="Nombre y apellido del conferenciante">
             <button id="agregarNombre" class="btn" type="button">Agregar nombre</button>
         </div>
 
-        <h4 class="h1">Zona de Mensajes</h4>
         <select class="select" id="optionsSelect">
             <option value="" disabled selected> Selecciona una opción de mensaje</option>
         </select>
@@ -183,10 +184,10 @@
     </main>
 
     <footer class="footer">
-        <p class="FP">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
+        <p class="p">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
     </footer>
 
-    <!-- agregar los botones de volver a tal lado -->
+
     <script>
 
         let mensajes = [
@@ -236,8 +237,11 @@
             card.classList.add("card");
 
             const p = document.createElement("p");
-            p.classList.add("p");
+            p.classList.add("mp");
             p.textContent = texto;
+
+            const br = document.createElement("br");
+            br.classList.add("mp");
 
             const boton = document.createElement("button");
             boton.classList.add("btn");
@@ -253,6 +257,7 @@
             });
 
             card.appendChild(p);
+            card.appendChild(br);
             card.appendChild(boton);
             contenedor.appendChild(card);
         }
