@@ -62,6 +62,7 @@ body {
     display: inline-block;
 }
 
+/* HOVER */
 .direccion a:hover {
     color: #0f5739;
     background-color: white;
@@ -73,7 +74,7 @@ body {
     background-color: #000000;
 
     width: 100%;
-    min-height: 100px;
+    min-height: 40px;
 
     padding: 10px;
     text-align: center;
@@ -81,14 +82,12 @@ body {
     margin-top: 20px;
 
     box-sizing: border-box;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 
-
+/* ========================= */
+/*       CELULARES           */
+/* ========================= */
 
 @media (max-width: 600px) {
 
@@ -99,12 +98,11 @@ body {
     .navbar {
         width: 100%;
         height: auto;
+
         padding: 15px 10px;
+
+        flex-direction: column;
         gap: 12px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        position: static;
     }
 
     .direccion {
@@ -113,7 +111,7 @@ body {
     }
 
     .direccion a {
-        width: auto;
+        width: 90%;
         font-size: 1rem;
         padding: 10px;
     }
@@ -122,10 +120,4 @@ body {
         margin-top: 15px;
         font-size: 0.9rem;
     }
-}
-
-/* Footer styles */
-.p {
-    color: white;
-    font-size: 20px;
 }

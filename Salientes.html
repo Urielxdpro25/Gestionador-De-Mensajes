@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Salientes | GDM</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .panel {
+            padding: 20px;
+            background: rgba(15, 87, 57, .86);
+            border-radius: 8px;
+        }
+
+        .formulario,
+        .busqueda {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        input,
+        button {
+            min-height: 40px;
+            padding: 9px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input {
+            flex: 1 1 160px;
+            min-width: 0;
+        }
+
+        button {
+            background: #fff;
+            color: #0f5739;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #dff5e8;
+        }
+
+        .tabla-contenedor {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #173c2b;
+            background: #fff;
+        }
+
+        th,
+        td {
+            padding: 11px 10px;
+            border: 1px solid #c9d7ce;
+            text-align: left;
+        }
+
+        th {
+            background: #dff5e8;
+        }
+
+        .estado {
+            min-height: 1.3em;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                margin: 15px 5px;
+            }
+
+            .panel {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="direccion"><a href="index.html">Inicio</a></div>
+        <div class="direccion"><a href="Mensajes Pitch.html">Mensajes Pitch</a></div>
+        <div class="direccion"><a href="formularios.html">Formularios</a></div>
+        <div class="direccion"><a href="Salientes.html">Salientes</a></div>
+        <div class="direccion"><a href="Contactos.html">Contactos</a></div>
+    </nav>
+
+    <main>
+        <h1>Oradores salientes</h1>
+        <section class="panel">
+            <form class="formulario" id="formulario">
+                <input id="orador" type="text" placeholder="Nombre y apellido del orador"
+                    aria-label="Nombre y apellido del orador" required>
+                <input id="numero" type="number" min="1" placeholder="N.º de conferencia"
+                    aria-label="Número de conferencia" required>
+                <input id="conferencia" type="text" placeholder="Nombre de conferencia"
+                    aria-label="Nombre de conferencia" required>
+                <input id="congregacion" type="text" placeholder="Congregación a visitar"
+                    aria-label="Congregación a visitar" required>
+                <input id="fecha" type="date" aria-label="Fecha" required>
+                <button type="submit">Añadir fila</button>
+            </form>
+
+            <div class="busqueda">
+                <input id="buscador" type="search" placeholder="Buscar por nombre del orador"
+                    aria-label="Buscar por nombre del orador">
+            </div>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Orador</th>
+                            <th>N.º</th>
+                            <th>Conferencia</th>
+                            <th>Congregación a visitar</th>
+                            <th>Fecha</th>
+                            <th>Compartir</th>
+                        </tr>
+                    </thead>
+                    <tbody id="filas">
+                        <tr id="sin-registros">
+                            <td colspan="6">Todavía no hay filas.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="estado" id="estado" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <script>
+        const formulario = document.getElementById('formulario');
+        const filas = document.getElementById('filas');
+        const buscador = document.getElementById('buscador');
+        const estado = document.getElementById('estado');
+
+        formulario.addEventListener('submit', function (evento) {
+            evento.preventDefault();
+            const valores = [
+                document.getElementById('orador').value.trim(),
+                document.getElementById('numero').value,
+                document.getElementById('conferencia').value.trim(),
+                document.getElementById('congregacion').value.trim(),
+                document.getElementById('fecha').value
+            ];
+            const filaVacia = document.getElementById('sin-registros');
+            if (filaVacia) filaVacia.remove();
+
+            const fila = document.createElement('tr');
+            valores.forEach(function (valor) {
+                const celda = document.createElement('td');
+                celda.textContent = valor;
+                fila.appendChild(celda);
+            });
+
+            const celdaCompartir = document.createElement('td');
+            const botonCompartir = document.createElement('button');
+            botonCompartir.type = 'button';
+            botonCompartir.textContent = 'Compartir';
+            botonCompartir.addEventListener('click', function () {
+                const mensaje = `Orador: ${valores[0]}\nConferencia ${valores[1]}: ${valores[2]}\nCongregación: ${valores[3]}\nFecha: ${valores[4]}`;
+                if (navigator.share) {
+                    navigator.share({ title: 'Datos de la conferencia', text: mensaje })
+                        .catch(function () { });
+                } else {
+                    window.open(`https://wa.me/?text=${encodeURIComponent(mensaje)}`, '_blank');
+                }
+            });
+            celdaCompartir.appendChild(botonCompartir);
+            fila.appendChild(celdaCompartir);
+            filas.appendChild(fila);
+            formulario.reset();
+            filtrarFilas();
+        });
+
+        function filtrarFilas() {
+            const busqueda = buscador.value.trim().toLocaleLowerCase();
+            let visibles = 0;
+            filas.querySelectorAll('tr:not(#sin-registros)').forEach(function (fila) {
+                const coincide = fila.cells[0].textContent.toLocaleLowerCase().includes(busqueda);
+                fila.hidden = !coincide;
+                if (coincide) visibles++;
+            });
+            estado.textContent = busqueda && visibles === 0 ? 'No se encontraron oradores.' : '';
+        }
+
+        buscador.addEventListener('input', filtrarFilas);
+    </script>
+</body>
+
+</html>

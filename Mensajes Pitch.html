@@ -14,6 +14,28 @@
 <body>
 
     <style>
+    
+
+        body {
+            background: linear-gradient(90deg, #0f5739, #3d8e66, #45c9a4, #46b5a9, #52c9eb);
+            padding: 20px 10px 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
         .contenedor {
             width: 100%;
             max-width: 1000px;
@@ -74,7 +96,7 @@
 
         .select {
             max-width: 1000px;
-            width: 100%;
+            width: auto;
             margin: 20px auto;
             padding: 12px;
             font-size: 1rem;
@@ -131,28 +153,12 @@
         }
     </style>
 
-    <h1 class="h1">Mensajes Pitch</h1>
-
-    <br>
-
-    <nav class="navbar">
-
-        <div class="direccion">
-            <a href="index.html">Inicio</a>
-        </div>
-
-        <div class="direccion">
-            <a href="Mensajes Pitch.html">Mensajes Pitch</a>
-        </div>
-
-        <div class="direccion">
-            <a href="formularios.html">Formularios</a>
-        </div>
-
-        <div class="direccion">
-            <a href="Contactos.html">Contactos</a>
-        </div>
-
+      <nav class="navbar">
+        <div class="direccion"><a href="index.html">Inicio</a></div>
+        <div class="direccion"><a href="Mensajes Pitch.html">Mensajes Pitch</a></div>
+        <div class="direccion"><a href="formularios.html">Formularios</a></div>
+        <div class="direccion"><a href="Salientes.html">Salientes</a></div>
+        <div class="direccion"><a href="Contactos.html">Contactos</a></div>
     </nav>
 
     <br>
@@ -181,20 +187,21 @@
         <p class="p">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
     </footer>
 
+
     <script>
 
         let mensajes = [
-            "Opción 1: Buenas tardes, hermano. Espero que se encuentre muy bien. Le habla Uriel Uncos, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 tiene la conferencia con nosotros. Desde ya, será un gusto contar con su presencia. ¡Lo esperamos!.",
+            "Buenas tardes, hermano. Espero que se encuentre muy bien. Le habla Uriel Uncos, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 tiene la conferencia con nosotros. Desde ya, será un gusto contar con su presencia. ¡Lo esperamos!.",
 
-            "Opción 2: Buenas tardes, hermano. Espero que se encuentre muy bien. Le habla Uriel Uncos, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 tiene la conferencia con nosotros. Desde ya, será un gusto contar con su presencia. ¡Lo esperamos!.",
+            "Buenas tardes, hermano. Espero que se encuentre muy bien. Le habla Uriel Uncos, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 tiene la conferencia con nosotros. Desde ya, será un gusto contar con su presencia. ¡Lo esperamos!.",
 
-            "Opción 3: ¡Buenas tardes, hermano! ¿Cómo está? Soy Uriel Uncos, de la congregación Barrio Don Bosco. Le escribo para recordarle que este domingo a las 10:00 tenemos su conferencia. ¡Esperamos poder contar con usted! Que tenga una linda tarde.",
+            "¡Buenas tardes, hermano! ¿Cómo está? Soy Uriel Uncos, de la congregación Barrio Don Bosco. Le escribo para recordarle que este domingo a las 10:00 tenemos su conferencia. ¡Esperamos poder contar con usted! Que tenga una linda tarde.",
 
-            "Opción 4: Muy buenas tardes, hermano. Espero que se encuentre bien. Mi nombre es Uriel Uncos, de la congregación Barrio Don Bosco. Quería comunicarme con usted para recordarle que este domingo a las 10:00 estará dando la conferencia con nosotros. ¡Será un placer recibirlo!",
+            "Muy buenas tardes, hermano. Espero que se encuentre bien. Mi nombre es Uriel Uncos, de la congregación Barrio Don Bosco. Quería comunicarme con usted para recordarle que este domingo a las 10:00 estará dando la conferencia con nosotros. ¡Será un placer recibirlo!",
 
-            "Opción 5: Buenas tardes, hermano, espero que se encuentre bien. Le habla Uriel Uncos, de la congregación Barrio Don Bosco. Le envío este mensaje para recordarle que este domingo a las 10:00 tiene la conferencia con nosotros. ¡Los esperamos!",
+            "Buenas tardes, hermano, espero que se encuentre bien. Le habla Uriel Uncos, de la congregación Barrio Don Bosco. Le envío este mensaje para recordarle que este domingo a las 10:00 tiene la conferencia con nosotros. ¡Los esperamos!",
 
-            "Opción 6: ¡Buenas tardes, hermano! Espero que todo ande muy bien. Le escribe Uriel Uncos, de la congregación Barrio Don Bosco, para recordarle que este domingo a las 10:00 estará a cargo de la conferencia. Será un verdadero gusto acompañarle. ¡Nos vemos pronto!"
+            "¡Buenas tardes, hermano! Espero que todo ande muy bien. Le escribe Uriel Uncos, de la congregación Barrio Don Bosco, para recordarle que este domingo a las 10:00 estará a cargo de la conferencia. Será un verdadero gusto acompañarle. ¡Nos vemos pronto!"
         ];
 
         const select = document.getElementById("optionsSelect");
