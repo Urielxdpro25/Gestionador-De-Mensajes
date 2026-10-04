@@ -3,16 +3,18 @@
 // Versión del caché
 // ==========================================
 
-const CACHE = "gestionador-v12";
+const CACHE = "gestionador-v2";
 
 // Archivos que se guardarán para usar sin Internet
 const ARCHIVOS = [
     "./",
     "./index.html",
     "./manifest.json",
-    "./LogoUncos.png",
+    "./LogoGDM.png",
     "./Contactos.html",
     "./formularios.html",
+    "./css/estilos.css",
+    "./Mensajes Pitch.html",
 ];
 
 // ==========================================

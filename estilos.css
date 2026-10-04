@@ -1,32 +1,46 @@
-body {
-    background: linear-gradient(90deg, #0f5739, #3d8e66, #45c9a4, #46b5a9, #52c9eb);
-    padding: 20px 10px;
+* {
     margin: 0;
-    min-height: 100vh;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* NAVBAR */
+body {
+    background: linear-gradient(90deg, #0f5739, #3d8e66, #45c9a4, #46b5a9, #52c9eb);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2rem;
+}
+
+
 .navbar {
     background-color: #0f5739;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
-
     width: 100%;
-    max-width: 1000px;
-    min-height: 100px;
-
     margin: 0 auto;
-
+    gap: 10px;
+    height: 100px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-    box-sizing: border-box;
 }
 
-/* ENLACES */
 .direccion a {
     color: white;
     text-decoration: none;
@@ -35,7 +49,7 @@ body {
     border-bottom: 2px solid transparent;
 
     transition: color .3s ease,
-                background-color .3s ease;
+        background-color .3s ease;
 
     background: rgba(255, 255, 255, 0.1);
 
@@ -53,9 +67,9 @@ body {
     color: #0f5739;
     background-color: white;
     border-bottom: 2px solid #0f5739;
+    width: auto;
 }
 
-/* FOOTER */
 .footer {
     background-color: #000000;
 
