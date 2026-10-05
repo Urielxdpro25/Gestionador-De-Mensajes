@@ -50,12 +50,6 @@
             border: 1px solid #c7d9d1;
         }
 
-        input:focus {
-            outline: none;
-            border-color: #1fe099;
-            box-shadow: 0 0 0 3px rgba(31, 224, 153, .25);
-        }
-
         .btn {
             width: 100%;
             height: 55px;
@@ -101,19 +95,11 @@
             font-weight: bold;
         }
 
-        .footer {
-            background-color: #000000;
-            width: 100%;
-            height: auto;
-            padding: 10px;
-            text-align: center;
-            margin-top: 20px;
-        }
     </style>
 
 </head>
 
-<body>
+<body class="pagina-formularios">
 
       <nav class="navbar">
         <div class="direccion"><a href="index.html">Inicio</a></div>
@@ -123,9 +109,14 @@
         <div class="direccion"><a href="Contactos.html">Contactos</a></div>
     </nav>
 
-    <br>
+    <main class="formularios-main">
+        <header class="seccion-encabezado">
+            <p class="seccion-etiqueta">PREPARACIÓN</p>
+            <h1>Completa la información</h1>
+            <p>Ingresa los datos de la conferencia y de la reunión para preparar el mensaje.</p>
+        </header>
 
-    <div class="Forms"> <!--los dos formularios-->
+    <div class="Forms">
 
         <form id="form-conferenciante" class="form">
 
@@ -194,6 +185,7 @@
         ¡Información copiada al portapapeles!
     </div>
 
+    </main>
 
     <footer class="footer">
         <p class="p">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
