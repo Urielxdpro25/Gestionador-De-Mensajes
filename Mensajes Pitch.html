@@ -11,147 +11,7 @@
     <title>Mensajes Pitch|Gestionador de Mensajes</title>
 </head>
 
-<body>
-
-    <style>
-    
-
-        body {
-            background: linear-gradient(90deg, #0f5739, #3d8e66, #45c9a4, #46b5a9, #52c9eb);
-            padding: 20px 10px 0;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        main {
-            flex: 1;
-        }
-
-        .h1 {
-            color: white;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 2rem;
-        }
-
-        .contenedor {
-            width: 100%;
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 15px;
-            background: #FAEBD7;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
-            display: flex;
-            gap: 18px;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .card {
-            background: #fff;
-            padding: 16px;
-            border-radius: 12px;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-        }
-
-
-        @media (max-width: 900px) {
-            .contenedor {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 12px 8px;
-            }
-
-            .h1 {
-                font-size: 1.6rem;
-            }
-
-            .contenedor {
-                display: block;
-                padding: 12px;
-                gap: 12px;
-                
-            }
-        }
-
-
-        .footer {
-            background-color: #000000;
-            width: 100%;
-            height: auto;
-            padding: 10px;
-            text-align: center;
-            margin-top: auto;
-            box-sizing: border-box;
-        }
-
-
-        .select {
-            max-width: 1000px;
-            width: auto;
-            margin: 20px auto;
-            padding: 12px;
-            font-size: 1rem;
-            background-color: #3d8e66;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: block;
-        }
-
-        .mp {
-            color: #0f5739;
-            font-size: 1.2rem;
-
-        }
-
-        .select:hover {
-            background-color: #2d6e4d;
-        }
-
-        .select option {
-            background-color: #f0f0f0;
-            color: #333;
-            padding: 8px;
-        }
-
-        .btn {
-            background-color: #0f5739;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .btn:hover {
-            background-color: #0a3a26;
-        }
-
-        .input {
-            width: 250px;
-            height: 25px;
-        }
-
-        .input:focus {
-            background-color: #4fe8a8;
-        }
-    </style>
+<body class="pagina-pitch">
 
       <nav class="navbar">
         <div class="direccion"><a href="index.html">Inicio</a></div>
@@ -163,22 +23,27 @@
 
     <br>
 
-    <main>
+    <main class="pitch-main">
+        <header class="pitch-encabezado">
+            <p class="pitch-etiqueta">MENSAJES PITCH</p>
+            <h1 class="h1">Prepara tu mensaje</h1>
+            <p>Personaliza el saludo, elige una opción y copia el texto listo para enviar.</p>
+        </header>
 
-        <br>
-
-        <h4 class="h1">Zona de Mensajes</h4>
-
-
-        <br>
         <div class="contenedor" id="contenedorNombre">
-            <input id="nombreConferenciante" class="input" placeholder="Nombre y apellido del conferenciante">
-            <button id="agregarNombre" class="btn" type="button">Agregar nombre</button>
+            <div class="pitch-campo">
+                <label for="nombreConferenciante">Nombre del conferenciante</label>
+                <input id="nombreConferenciante" class="input" placeholder="Ej.: Juan Pérez">
+            </div>
+            <button id="agregarNombre" class="btn" type="button">Usar este nombre</button>
         </div>
 
-        <select class="select" id="optionsSelect">
-            <option value="" disabled selected> Selecciona una opción de mensaje</option>
-        </select>
+        <div class="pitch-selector">
+            <label for="optionsSelect">1. Elige una opción de mensaje</label>
+            <select class="select" id="optionsSelect">
+                <option value="" disabled selected>Selecciona un mensaje</option>
+            </select>
+        </div>
 
         <div class="contenedor" id="contenedorMensaje"></div>
     </main>
@@ -187,10 +52,6 @@
         <p class="p">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
     </footer>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b868eb4271420b940417a0e79677ee2f30770479
     <script>
 
         let mensajes = [

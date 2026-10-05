@@ -6,104 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
     <title>Salientes | GDM</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #fff;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        main {
-            max-width: 1100px;
-            margin: 25px auto;
-        }
-
-        .panel {
-            padding: 20px;
-            background: rgba(15, 87, 57, .86);
-            border-radius: 8px;
-        }
-
-        .formulario,
-        .busqueda {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 18px;
-        }
-
-        input,
-        button {
-            min-height: 40px;
-            padding: 9px 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        input {
-            flex: 1 1 160px;
-            min-width: 0;
-        }
-
-        button {
-            background: #fff;
-            color: #0f5739;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background: #dff5e8;
-        }
-
-        .tabla-contenedor {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            color: #173c2b;
-            background: #fff;
-        }
-
-        th,
-        td {
-            padding: 11px 10px;
-            border: 1px solid #c9d7ce;
-            text-align: left;
-        }
-
-        th {
-            background: #dff5e8;
-        }
-
-        .estado {
-            min-height: 1.3em;
-            margin-bottom: 0;
-        }
-
-        @media (max-width: 600px) {
-            main {
-                margin: 15px 5px;
-            }
-
-            .panel {
-                padding: 14px;
-            }
-        }
-    </style>
 </head>
 
-<body>
+<body class="pagina-salientes">
     <nav class="navbar">
         <div class="direccion"><a href="index.html">Inicio</a></div>
         <div class="direccion"><a href="Mensajes Pitch.html">Mensajes Pitch</a></div>
@@ -113,23 +18,47 @@
     </nav>
 
     <main>
-        <h1>Oradores salientes</h1>
+        <header class="salientes-encabezado">
+            <p class="salientes-etiqueta">ORGANIZACIÓN</p>
+            <h1>Oradores salientes</h1>
+            <p>Registra las próximas visitas y encuentra rápidamente los datos de cada orador.</p>
+        </header>
         <section class="panel">
+            <div class="salientes-seccion-titulo">
+                <h2>Agregar una visita</h2>
+                <p>Completa los datos y selecciona “Añadir fila”.</p>
+            </div>
             <form class="formulario" id="formulario">
-                <input id="orador" type="text" placeholder="Nombre y apellido del orador"
-                    aria-label="Nombre y apellido del orador" required>
-                <input id="numero" type="number" min="1" placeholder="N.º de conferencia"
-                    aria-label="Número de conferencia" required>
-                <input id="conferencia" type="text" placeholder="Nombre de conferencia"
-                    aria-label="Nombre de conferencia" required>
-                <input id="congregacion" type="text" placeholder="Congregación a visitar"
-                    aria-label="Congregación a visitar" required>
-                <input id="fecha" type="date" aria-label="Fecha" required>
-                <button type="submit">Añadir fila</button>
+                <label class="salientes-campo" for="orador">
+                    <span>Orador</span>
+                    <input id="orador" type="text" placeholder="Nombre y apellido"
+                        aria-label="Nombre y apellido del orador" required>
+                </label>
+                <label class="salientes-campo" for="numero">
+                    <span>N.º de conferencia</span>
+                    <input id="numero" type="number" min="1" placeholder="Ej.: 24"
+                        aria-label="Número de conferencia" required>
+                </label>
+                <label class="salientes-campo" for="conferencia">
+                    <span>Conferencia</span>
+                    <input id="conferencia" type="text" placeholder="Nombre de la conferencia"
+                        aria-label="Nombre de conferencia" required>
+                </label>
+                <label class="salientes-campo" for="congregacion">
+                    <span>Congregación a visitar</span>
+                    <input id="congregacion" type="text" placeholder="Nombre de congregación"
+                        aria-label="Congregación a visitar" required>
+                </label>
+                <label class="salientes-campo" for="fecha">
+                    <span>Fecha</span>
+                    <input id="fecha" type="date" aria-label="Fecha" required>
+                </label>
+                <button class="salientes-agregar" type="submit">Añadir fila</button>
             </form>
 
-            <div class="busqueda">
-                <input id="buscador" type="search" placeholder="Buscar por nombre del orador"
+            <div class="salientes-busqueda">
+                <label for="buscador">Buscar en la lista</label>
+                <input id="buscador" type="search" placeholder="Escribe el nombre del orador"
                     aria-label="Buscar por nombre del orador">
             </div>
 

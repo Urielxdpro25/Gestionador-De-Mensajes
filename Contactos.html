@@ -89,22 +89,6 @@
             background: #08452d;
         }
 
-        @media(max-width:600px) {
-            .footer {
-                background-color: #000000;
-                width: 100%;
-                height: auto;
-                padding: 10px;
-                text-align: center;
-                margin-top: 20px;
-            }
-
-            .p {
-                color: white;
-                font-size: 1.2rem;
-            }
-
-
 
             @media(max-width:600px) {
 
@@ -125,18 +109,18 @@
             }
 
             .container{
-                 display: grid;
+            display: grid;
             grid-template-columns: repeat(1, 1fr);
             grid-template-rows: repeat(auto, 1fr);
             gap: 20px;
             }
-        }
-    }
+        
+    
     </style>
 
 </head>
 
-<body>
+<body class="pagina-contactos">
 
       <nav class="navbar">
         <div class="direccion"><a href="index.html">Inicio</a></div>
@@ -145,16 +129,15 @@
         <div class="direccion"><a href="Salientes.html">Salientes</a></div>
         <div class="direccion"><a href="Contactos.html">Contactos</a></div>
     </nav>
-    
-    <div>
 
+    <main class="contactos-main">
+        <header class="seccion-encabezado">
+            <p class="seccion-etiqueta">ESTAMOS EN CONTACTO</p>
+            <h1>Contactos</h1>
+            <p>Encuentra aquí los canales para comunicarte y seguir en contacto.</p>
+        </header>
 
-    <br>
-
-    <div>
-
-        <div class="container">
-
+        <section class="container">
             <div class="contacto">
                 <i class="fas fa-envelope"></i>
 
@@ -213,14 +196,12 @@
             <a class="boton" href="index.html">
                 Volver al Inicio
             </a>
+        </section>
+    </main>
 
-
-
-        </div>
-
-        <footer class="footer">
-            <p class="p">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
-        </footer>
+    <footer class="footer">
+        <p class="p">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
+    </footer>
 
 </body>
 
