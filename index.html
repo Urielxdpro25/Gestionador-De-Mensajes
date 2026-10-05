@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -12,9 +12,6 @@
 
 
 <style>
-
-
-
     .container {
         width: auto;
         max-width: 560px;
@@ -69,8 +66,8 @@
 
 <body class="pagina-inicio">
 
-   <nav class="navbar">
-        <div class="direccion"><a href="index.html">Inicio</a></div>
+    <nav class="navbar">
+        <div class="direccion" ><a href="index.html" class="navActive">Inicio</a></div>
         <div class="direccion"><a href="Mensajes Pitch.html">Mensajes Pitch</a></div>
         <div class="direccion"><a href="formularios.html">Formularios</a></div>
         <div class="direccion"><a href="Salientes.html">Salientes</a></div>
@@ -87,13 +84,63 @@
 
         <section class="container">
             <h2>Gestiona tus mensajes de manera eficiente</h2>
-            <p>En esta web podrás gestionar tus mensajes de forma eficiente y segura para cada reunión del fin de semana. Prepara la información para el presidente y el conferenciante desde las herramientas del menú.</p>
+            <p>En esta web podrás gestionar tus mensajes de forma eficiente y segura para cada reunión del fin de
+                semana. Prepara la información para el presidente y el conferenciante desde las herramientas del menú.
+            </p>
         </section>
+
+        <section class="container">
+            <h2>Ingresa tu nombre y apellido</h2>
+            <form id="form-datos-personales">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" autocomplete="given-name" required>
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" autocomplete="family-name" required>
+
+                <br>
+                <br>
+                <button type="submit" class="button">Cargar</button>
+            </form>
+
+        </section>
+
     </main>
+
+    <br>
+
+    <nav aria-label="Paginación de la página">
+
+        <ul class="pagination">
+            <li><a href="index.html" class="active">1</a></li>
+            <li><a href="Mensajes Pitch.html">2</a></li>
+            <li><a href="formularios.html">3</a></li>
+            <li><a href="Salientes.html">4</a></li>
+            <li><a href="Contactos.html">5</a></li>
+        </ul>
+
+    </nav>
+
+    <br>
 
     <footer class="footer">
         <p class="fp">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
     </footer>
+
+    <script>
+        const form = document.getElementById('form-datos-personales');
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+
+        nombreInput.value = localStorage.getItem('nombreUsuario') || '';
+        apellidoInput.value = localStorage.getItem('apellidoUsuario') || '';
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            localStorage.setItem('nombreUsuario', nombreInput.value.trim());
+            localStorage.setItem('apellidoUsuario', apellidoInput.value.trim());
+        });
+    </script>
 
 </body>
 

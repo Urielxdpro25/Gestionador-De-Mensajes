@@ -15,6 +15,38 @@ body {
     padding: 20px;
 }
 
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    gap: 5px;
+}
+
+.pagination li a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.pagination li a:hover {
+    background-color: #eee;
+}
+
+.pagination li a.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+
+
 .h1 {
     color: #064E40;
     text-align: center;
@@ -37,6 +69,12 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.navbar .navActive {
+    background-color: #eaefe9;
+    color: #0f5739;
+    border-color: black;
 }
 
 .direccion {
@@ -143,7 +181,7 @@ input:focus {
     font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
 
-.seccion-encabezado > p:last-child {
+.seccion-encabezado>p:last-child {
     color: rgba(255, 255, 255, .9);
     font-size: 1.05rem;
     line-height: 1.6;
@@ -294,8 +332,8 @@ input:focus {
     font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
 
-.pitch-encabezado > p:last-child,
-.salientes-encabezado > p:last-child {
+.pitch-encabezado>p:last-child,
+.salientes-encabezado>p:last-child {
     color: rgba(255, 255, 255, .9);
     font-size: 1.05rem;
     line-height: 1.6;
@@ -578,6 +616,7 @@ input:focus {
 }
 
 @media (max-width: 600px) {
+
     .pitch-main,
     .pagina-salientes main {
         margin: 28px auto;
