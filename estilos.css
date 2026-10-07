@@ -54,6 +54,20 @@ body {
     font-size: 2rem;
 }
 
+/* Botón generico */
+.button{
+    min-height: 48px;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 10px;
+    background: #0f5739;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
 
 .navbar {
     background-color: #0f5739;
@@ -665,5 +679,79 @@ input:focus {
 
     .pagina-contactos .boton {
         grid-column: auto;
+    }
+}
+
+.pagina-configuracion {
+    justify-content: flex-start;
+}
+
+.configuracion-main {
+    width: min(100%, 1120px);
+    flex: 1;
+    margin: 18px auto;
+}
+
+.configuracion-main .seccion-encabezado {
+    margin-top: 24px;
+}
+
+.configuracion-card {
+    width: min(100%, 620px);
+    max-width: none;
+    margin: 28px auto;
+    padding: clamp(22px, 4vw, 36px);
+    border: 1px solid rgba(255, 255, 255, .55);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .94);
+    color: #25483a;
+    box-shadow: 0 16px 38px rgba(7, 47, 32, .2);
+}
+
+.configuracion-card h2 {
+    margin-bottom: 8px;
+    color: #0f5739;
+    font-size: 1.45rem;
+}
+
+.configuracion-descripcion {
+    margin-bottom: 24px;
+    color: #526b5e;
+    line-height: 1.6;
+}
+
+.configuracion-form {
+    display: grid;
+    gap: 18px;
+}
+
+.configuracion-campo {
+    display: grid;
+    gap: 8px;
+}
+
+.configuracion-campo label {
+    color: #25483a;
+    font-weight: 700;
+}
+
+.configuracion-campo input {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #b9cec3;
+    border-radius: 8px;
+    background: #fff;
+    color: #173c2c;
+    font-size: 1rem;
+}
+
+.configuracion-form .button {
+    justify-self: start;
+}
+
+@media (max-width: 600px) {
+    .configuracion-form .button {
+        width: 100%;
     }
 }
