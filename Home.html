@@ -105,7 +105,7 @@
 <script>
         const nombreUsuario = localStorage.getItem("nombreUsuario");
         const apellidoUsuario = localStorage.getItem("apellidoUsuario");
-        const nombreCompleto = `${nombreUsuario?.trim() || ""} `.trim();
+        const nombreCompleto = `${nombreUsuario?.trim() || ""} ${apellidoUsuario?.trim() || ""}`.trim();
         document.getElementById("nombre").textContent = nombreCompleto ? nombreCompleto : "Invitado";
     </script>
 
