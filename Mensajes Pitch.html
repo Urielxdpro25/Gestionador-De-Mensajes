@@ -36,7 +36,19 @@
                 <label for="nombreConferenciante">Nombre del conferenciante</label>
                 <input id="nombreConferenciante" class="input" placeholder="Ej.: Juan Pérez">
             </div>
-            <button id="agregarNombre" class="btn" type="button">Usar este nombre</button>
+
+            <div class="pitch-campo">
+                <label for="NombreConferencial">Nombre de la conferencia</label>
+                <input id="NombreConferencial" class="input" placeholder="Nombre Conferencia">
+            </div>
+
+            <div class="pitch-campo">
+                <label for="NumeroConferencial">Número de la conferencia</label>
+                <input id="NumeroConferencial" class="input" placeholder="Número Conferencia" type="number" min="1">
+            </div>
+
+
+            <button id="agregarNombre" class="btn" type="button">Tomar Información</button>
         </div>
 
         <div class="pitch-selector">
@@ -70,25 +82,31 @@
 
     <script>
 
-        let mensajes = [
-            "Buenas tardes, hermano. Espero que se encuentre muy bien. Le habla {{nombreUsuario}}, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 tiene la conferencia con nosotros. Desde ya, será un gusto contar con su presencia. ¡Lo esperamos!.",
+let mensajes = [
+    "Buenas tardes, hermano. Espero que se encuentre muy bien. Le habla {{nombreUsuario}}, de la congregación Barrio Don Bosco. Le escribo para recordarle que este domingo a las 10:00 tendremos el gusto de recibirlo para la conferencia. ¡Lo esperamos con mucho gusto!",
 
-            "Buenas tardes, hermano. Espero que se encuentre muy bien. Le habla {{nombreUsuario}}, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 tiene la conferencia con nosotros. Desde ya, será un gusto contar con su presencia. ¡Lo esperamos!.",
+    "¡Buenas tardes, hermano! ¿Cómo está? Soy {{nombreUsuario}}, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 tenemos programada su conferencia. Desde ya, muchas gracias por su disposición. ¡Será un gusto recibirlo!",
 
-            "¡Buenas tardes, hermano! ¿Cómo está? Soy {{nombreUsuario}}, de la congregación Barrio Don Bosco. Le escribo para recordarle que este domingo a las 10:00 tenemos su conferencia. ¡Esperamos poder contar con usted! Que tenga una linda tarde.",
+    "Muy buenas tardes, hermano. Espero que esté pasando una linda semana. Le escribe {{nombreUsuario}}, de la congregación Barrio Don Bosco, para recordarle que este domingo a las 10:00 lo esperamos para su conferencia. ¡Que tenga una excelente tarde!",
 
-            "Muy buenas tardes, hermano. Espero que se encuentre bien. Mi nombre es {{nombreUsuario}}, de la congregación Barrio Don Bosco. Quería comunicarme con usted para recordarle que este domingo a las 10:00 estará dando la conferencia con nosotros. ¡Será un placer recibirlo!",
+    "Buenas tardes, hermano. Espero que se encuentre bien. Mi nombre es {{nombreUsuario}} y le escribo de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 presentará la conferencia titulada «{{nombreConferencia}}». ¡Será un placer contar con su presencia!",
 
-            "Buenas tardes, hermano, espero que se encuentre bien. Le habla {{nombreUsuario}}, de la congregación Barrio Don Bosco. Le envío este mensaje para recordarle que este domingo a las 10:00 tiene la conferencia con nosotros. ¡Los esperamos!",
+    "¡Hola, hermano! Muy buenas tardes. Espero que se encuentre muy bien. Soy {{nombreUsuario}}, de la congregación Barrio Don Bosco. Me comunico para recordarle que este domingo a las 10:00 lo estaremos esperando para la conferencia. ¡Desde ya, muchas gracias y hasta el domingo!",
 
-            "¡Buenas tardes, hermano! Espero que todo ande muy bien. Le escribe {{nombreUsuario}}, de la congregación Barrio Don Bosco, para recordarle que este domingo a las 10:00 estará a cargo de la conferencia. Será un verdadero gusto acompañarle. ¡Nos vemos pronto!"
-        ];
+    "Buenas tardes, hermano. ¿Cómo está? Le habla {{nombreUsuario}}, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 estará a cargo de la conferencia número {{numeroConferencia}}, titulada «{{nombreConferencia}}». Será un gusto recibirlo y compartir ese momento con usted. ¡Lo esperamos!"
+];
+
 
         const select = document.getElementById("optionsSelect");
         const contenedor = document.getElementById("contenedorMensaje");
         const nombreInput = document.getElementById("nombreConferenciante");
         const agregarNombreBtn = document.getElementById("agregarNombre");
         const estadoNombreUsuario = document.getElementById("estadoNombreUsuario");
+        const nombreConferenciaInput = document.getElementById("NombreConferencial");
+        const numeroConferenciaInput = document.getElementById("NumeroConferencial");
+        const boton = document.getElementById("agregarNombre");
+
+
         const nombreUsuario = [
             localStorage.getItem("nombreUsuario"),
             localStorage.getItem("apellidoUsuario")
@@ -104,12 +122,13 @@
         function crearMensajeConNombre(mensaje, nombre) {
             const nombreLimpio = nombre.trim();
             const mensajeConNombreUsuario = mensaje.replace(/\{\{nombreUsuario\}\}/g, nombreUsuario);
-
+            const mensajeConNombreConferencia = mensajeConNombreUsuario.replace(/\{\{nombreConferencia\}\}/g, nombreConferenciaInput.value || "la conferencia");
+            const mensajeConNumeroConferencia = mensajeConNombreConferencia.replace(/\{\{numeroConferencia\}\}/g, numeroConferenciaInput.value || "el número de conferencia");
             if (!nombreLimpio) {
-                return mensajeConNombreUsuario;
+                return mensajeConNumeroConferencia;
             }
 
-            return mensajeConNombreUsuario
+            return mensajeConNumeroConferencia
                 .replace(/hermano/gi, nombreLimpio);
         }
 
@@ -183,17 +202,6 @@
             }
         });
 
-        nombreInput.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                nombreActual = nombreInput.value;
-
-                if (select.value !== "") {
-                    renderMensajeSeleccionado();
-                }
-            }
-        });
-
-        select.addEventListener("change", renderMensajeSeleccionado);
 
 
     </script>
