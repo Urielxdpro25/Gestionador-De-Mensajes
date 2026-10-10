@@ -15,12 +15,59 @@ body {
     padding: 20px;
 }
 
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    gap: 5px;
+}
+
+.pagination li a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.pagination li a:hover {
+    background-color: #eee;
+}
+
+.pagination li a.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+
+
 .h1 {
     color: #064E40;
     text-align: center;
     margin-bottom: 25px;
     font-size: 2rem;
 }
+
+/* Botón generico */
+.button{
+    min-height: 48px;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 10px;
+    background: #0f5739;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
 
 
 .navbar {
@@ -37,6 +84,12 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.navbar .navActive {
+    background-color: #eaefe9;
+    color: #0f5739;
+    border-color: black;
 }
 
 .direccion {
@@ -143,7 +196,7 @@ input:focus {
     font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
 
-.seccion-encabezado > p:last-child {
+.seccion-encabezado>p:last-child {
     color: rgba(255, 255, 255, .9);
     font-size: 1.05rem;
     line-height: 1.6;
@@ -294,8 +347,8 @@ input:focus {
     font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
 
-.pitch-encabezado > p:last-child,
-.salientes-encabezado > p:last-child {
+.pitch-encabezado>p:last-child,
+.salientes-encabezado>p:last-child {
     color: rgba(255, 255, 255, .9);
     font-size: 1.05rem;
     line-height: 1.6;
@@ -578,6 +631,7 @@ input:focus {
 }
 
 @media (max-width: 600px) {
+
     .pitch-main,
     .pagina-salientes main {
         margin: 28px auto;
@@ -626,5 +680,79 @@ input:focus {
 
     .pagina-contactos .boton {
         grid-column: auto;
+    }
+}
+
+.pagina-configuracion {
+    justify-content: flex-start;
+}
+
+.configuracion-main {
+    width: min(100%, 1120px);
+    flex: 1;
+    margin: 18px auto;
+}
+
+.configuracion-main .seccion-encabezado {
+    margin-top: 24px;
+}
+
+.configuracion-card {
+    width: min(100%, 620px);
+    max-width: none;
+    margin: 28px auto;
+    padding: clamp(22px, 4vw, 36px);
+    border: 1px solid rgba(255, 255, 255, .55);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .94);
+    color: #25483a;
+    box-shadow: 0 16px 38px rgba(7, 47, 32, .2);
+}
+
+.configuracion-card h2 {
+    margin-bottom: 8px;
+    color: #0f5739;
+    font-size: 1.45rem;
+}
+
+.configuracion-descripcion {
+    margin-bottom: 24px;
+    color: #526b5e;
+    line-height: 1.6;
+}
+
+.configuracion-form {
+    display: grid;
+    gap: 18px;
+}
+
+.configuracion-campo {
+    display: grid;
+    gap: 8px;
+}
+
+.configuracion-campo label {
+    color: #25483a;
+    font-weight: 700;
+}
+
+.configuracion-campo input {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #b9cec3;
+    border-radius: 8px;
+    background: #fff;
+    color: #173c2c;
+    font-size: 1rem;
+}
+
+.configuracion-form .button {
+    justify-self: start;
+}
+
+@media (max-width: 600px) {
+    .configuracion-form .button {
+        width: 100%;
     }
 }

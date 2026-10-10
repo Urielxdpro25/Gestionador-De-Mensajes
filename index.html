@@ -1,100 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f5739">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="LogoGDM.jpeg">
     <link rel="stylesheet" href="estilos.css">
-    <title>Gestionador de Mensajes</title>
+    <title>Acceso | Gestionador de Mensajes</title>
 </head>
 
-
-<style>
-
-
-
-    .container {
-        width: auto;
-        max-width: 560px;
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 15px;
-
-        background: rgba(255, 255, 255, .15);
-        backdrop-filter: blur(8px);
-
-        border: 1px solid rgba(255, 255, 255, .25);
-
-        box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
-
-        transition:
-            transform .35s ease,
-            box-shadow .35s ease,
-            background .35s ease,
-            border-color .35s ease;
-    }
-
-    .container:hover {
-        background: rgba(255, 255, 255, .25);
-        border-color: rgba(255, 255, 255, .8);
-
-        transform: translateY(-8px) scale(1.02);
-
-        box-shadow:
-            0 18px 35px rgba(0, 0, 0, .35),
-            0 0 20px rgba(255, 255, 255, .25);
-
-        cursor: pointer;
-    }
-
-    .button {
-        background: #0f5739;
-        color: white;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: all .3s ease;
-    }
-
-    .button:hover {
-        background: #1d7b56;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 18px rgba(0, 0, 0, .35);
-    }
-</style>
-
-<body class="pagina-inicio">
-
-   <nav class="navbar">
-        <div class="direccion"><a href="index.html">Inicio</a></div>
-        <div class="direccion"><a href="Mensajes Pitch.html">Mensajes Pitch</a></div>
-        <div class="direccion"><a href="formularios.html">Formularios</a></div>
-        <div class="direccion"><a href="Salientes.html">Salientes</a></div>
-        <div class="direccion"><a href="Contactos.html">Contactos</a></div>
-    </nav>
-
-
-    <main class="inicio-main">
+<body class="pagina-configuracion">
+    <main class="configuracion-main">
         <header class="seccion-encabezado">
-            <p class="seccion-etiqueta">BIENVENIDO</p>
-            <h1>Gestionador de Mensajes</h1>
-            <p>Organiza la información y prepara tus mensajes de forma sencilla.</p>
+            <p class="seccion-etiqueta">ACCESO</p>
+            <h1>Bienvenido al Gestionador de Mensajes</h1>
+            <p>Ingresa tus datos para continuar al inicio.</p>
         </header>
 
-        <section class="container">
-            <h2>Gestiona tus mensajes de manera eficiente</h2>
-            <p>En esta web podrás gestionar tus mensajes de forma eficiente y segura para cada reunión del fin de semana. Prepara la información para el presidente y el conferenciante desde las herramientas del menú.</p>
+        <section class="container configuracion-card" aria-labelledby="titulo-datos">
+            <h2 id="titulo-datos">Datos personales</h2>
+            <p class="configuracion-descripcion">Usaremos esta información para personalizar tus mensajes.</p>
+
+            <form id="form-datos-personales" class="configuracion-form">
+                <div class="configuracion-campo">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" autocomplete="given-name" required>
+                </div>
+
+                <div class="configuracion-campo">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" autocomplete="family-name" required>
+                </div>
+
+                <div class="configuracion-campo">
+                    <label for="congregacion">Congregación y ciudad </label>
+                    <input type="text" id="congregacion" name="congregacion" autocomplete="organization" required>
+                </div>
+                <button type="submit" class="button">Ingresar</button>
+            </form>
         </section>
     </main>
 
     <footer class="footer">
-        <p class="fp">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
+        <p>© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
     </footer>
 
-</body>
+    <script>
+        const form = document.getElementById("form-datos-personales");
+        const nombreInput = document.getElementById("nombre");
+        const apellidoInput = document.getElementById("apellido");
+        const congregacionInput = document.getElementById("congregacion");
 
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            localStorage.setItem("nombreUsuario", nombreInput.value.trim());
+            localStorage.setItem("apellidoUsuario", apellidoInput.value.trim());
+            localStorage.setItem("congregacionUsuario", congregacionInput.value.trim());
+            window.location.href = "Home.html";
+        });
+
+    </script>
+</body>
 </html>
