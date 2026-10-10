@@ -21,6 +21,23 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
         }
 
+        .estado-formulario {
+            margin: 8px 0 12px;
+            font-weight: bold;
+        }
+
+        .estado-formulario[data-estado="vacio"] {
+            color: #a4262c;
+        }
+
+        .estado-formulario[data-estado="incompleto"] {
+            color: #8a5700;
+        }
+
+        .estado-formulario[data-estado="completo"] {
+            color: #0f5739;
+        }
+
         fieldset {
             border: 1px solid #d6e8df;
             border-radius: 10px;
@@ -94,14 +111,13 @@
             display: none;
             font-weight: bold;
         }
-
     </style>
 
 </head>
 
 <body class="pagina-formularios">
 
-      <nav class="navbar">
+    <nav class="navbar">
         <div class="direccion"><a href="Home.html">Inicio</a></div>
         <div class="direccion"><a href="Mensajes Pitch.html">Mensajes Pitch</a></div>
         <div class="direccion"><a href="formularios.html" class="navActive">Formularios</a></div>
@@ -116,78 +132,80 @@
             <p>Ingresa los datos de la conferencia y de la reunión para preparar el mensaje.</p>
         </header>
 
-    <div class="Forms">
+        <div class="Forms">
 
-        <form id="form-conferenciante" class="form">
+            <form id="form-conferenciante" class="form">
 
-            <fieldset>
+                <fieldset>
 
-                <legend>Información Conferenciante</legend>
+                    <legend>Información Conferenciante</legend>
+                    <p class="estado-formulario" id="estadoConferenciante" aria-live="polite"></p>
 
-                <label for="nombre">Nombre y apellido Conferenciante:</label>
-                <input type="text" id="nombre">
-
-
-                <label for="titulo">Título Conferencia:</label>
-                <input type="text" id="titulo">
-
-                <label for="numero">Número Conferencia:</label>
-                <input type="text" id="numero">
-
-                <label for="titulo-Cantico">Título Cántico:</label>
-                <input type="text" id="titulo-Cantico">
-
-                <label for="numero-Cantico">Número Cántico:</label>
-                <input type="text" id="numero-Cantico">
-
-                <label for="nombre-Congregacion">Nombre Congregación Conferenciante:</label>
-                <input type="text" id="nombre-Congregacion">
-
-            </fieldset>
-
-        </form>
+                    <label for="nombre">Nombre y apellido Conferenciante:</label>
+                    <input type="text" id="nombre">
 
 
-        <form id="form-mensaje" class="form">
+                    <label for="titulo">Título Conferencia:</label>
+                    <input type="text" id="titulo">
 
-            <fieldset>
+                    <label for="numero">Número Conferencia:</label>
+                    <input type="text" id="numero">
 
-                <legend>Información del Mensaje</legend>
+                    <label for="titulo-Cantico">Título Cántico:</label>
+                    <input type="text" id="titulo-Cantico">
 
-                <label for="nom-Presidente" class="presidente">Nombre y Apellido Presidente:</label>
-                <input type="text" id="nom-Presidente">
+                    <label for="numero-Cantico">Número Cántico:</label>
+                    <input type="text" id="numero-Cantico">
 
-                <label for="oracion-Ini">Oración Inicial:</label>
-                <input type="text" id="oracion-Ini">
+                    <label for="nombre-Congregacion">Nombre Congregación Conferenciante:</label>
+                    <input type="text" id="nombre-Congregacion">
 
-                <label for="nom-Lector">Nombre y Apellido Lector:</label>
-                <input type="text" id="nom-Lector">
+                </fieldset>
 
-                <label for="oracion-Fin">Oración Final:</label>
-                <input type="text" id="oracion-Fin">
-
-
-
-            </fieldset>
-        </form>
+            </form>
 
 
-    </div><!--div contendor de los 2 formularios-->
+            <form id="form-mensaje" class="form">
 
-    <button type="button" class="btn" onclick="copiarFormulario('form-mensaje')">
-        Copiar al Portapapeles
-    </button>
+                <fieldset>
 
-    <br>
-    <button class="btn" onclick="window.location.href='Home.html'">Volver al Inicio</button>
+                    <legend>Información del Mensaje</legend>
+                    <p class="estado-formulario" id="estadoMensaje" aria-live="polite"></p>
 
-    <div id="mensajeCopiado">
-        ¡Información copiada al portapapeles!
-    </div>
+                    <label for="nom-Presidente" class="presidente">Nombre y Apellido Presidente:</label>
+                    <input type="text" id="nom-Presidente">
+
+                    <label for="oracion-Ini">Oración Inicial:</label>
+                    <input type="text" id="oracion-Ini">
+
+                    <label for="nom-Lector">Nombre y Apellido Lector:</label>
+                    <input type="text" id="nom-Lector">
+
+                    <label for="oracion-Fin">Oración Final:</label>
+                    <input type="text" id="oracion-Fin">
+
+
+
+                </fieldset>
+            </form>
+
+
+        </div><!--div contendor de los 2 formularios-->
+
+        <button type="button" class="btn" onclick="copiarFormulario()">
+            Copiar al Portapapeles
+        </button>
+
+        <br>
+        <button class="btn" onclick="window.location.href='Home.html'">Volver al Inicio</button>
+
+        <div id="mensajeCopiado">
+            ¡Información copiada al portapapeles!
+        </div>
 
     </main>
 
-   
+
 
     <nav aria-label="Paginación de la página">
 
@@ -202,55 +220,97 @@
 
     </nav>
 
-     <footer class="footer">
+    <footer class="footer">
         <p class="p">© 2026 Gestionador de Mensajes. Todos los derechos reservados. La Doble U.</p>
     </footer>
 
     <script>
+        function actualizarEstadoFormulario(formularioId, estadoId) {
+            const formulario = document.getElementById(formularioId);
+            const estado = document.getElementById(estadoId);
+            const campos = formulario.getElementsByTagName("input");
+            let camposCompletos = 0;
+
+            for (let i = 0; i < campos.length; i++) {
+                if (campos[i].value.trim() !== "") {
+                    camposCompletos++;
+                }
+            }
+
+            if (camposCompletos === 0) {
+                estado.textContent = "Formulario vacío.";
+                estado.dataset.estado = "vacio";
+            } else if (camposCompletos === campos.length) {
+                estado.textContent = "Formulario completo.";
+                estado.dataset.estado = "completo";
+            } else {
+                estado.textContent = `Formulario incompleto: ${camposCompletos} de ${campos.length} campos completos.`;
+                estado.dataset.estado = "incompleto";
+            }
+        }
+
+        const formularioConferenciante = document.getElementById("form-conferenciante");
+        formularioConferenciante.addEventListener("input", function () {
+            actualizarEstadoFormulario("form-conferenciante", "estadoConferenciante");
+        });
+        actualizarEstadoFormulario("form-conferenciante", "estadoConferenciante");
+
+        const formularioMensaje = document.getElementById("form-mensaje");
+        formularioMensaje.addEventListener("input", function () {
+            actualizarEstadoFormulario("form-mensaje", "estadoMensaje");
+        });
+        actualizarEstadoFormulario("form-mensaje", "estadoMensaje");
+
         function copiarFormulario() {
+            const presidente = document.getElementById("nom-Presidente").value;
+            const nombre = document.getElementById("nombre").value;
+            const titulo = document.getElementById("titulo").value;
+            const numero = document.getElementById("numero").value;
+            const tituloCantico = document.getElementById("titulo-Cantico").value;
+            const numeroCantico = document.getElementById("numero-Cantico").value;
+            const congregacion = document.getElementById("nombre-Congregacion").value;
+            const oracionInicial = document.getElementById("oracion-Ini").value;
+            const lector = document.getElementById("nom-Lector").value;
+            const oracionFinal = document.getElementById("oracion-Fin").value;
 
-            // 1. Construcción de la cadena con formato estructurado
-            const texto = ` Hola  ${document.getElementById("nom-Presidente").value}, aquí tienes la información del conferenciante:
-
+            const texto = `Hola ${presidente}, aquí tienes la información del conferenciante:
 Información del conferenciante:
-Nombre y Apellido Conferenciante: ${document.getElementById("nombre").value}
-Título Conferencia: ${document.getElementById("titulo").value}
-Número Conferencia: ${document.getElementById("numero").value}
-Título Cántico: ${document.getElementById("titulo-Cantico").value}
-Número Cántico: ${document.getElementById("numero-Cantico").value}
-Nombre Congregación Conferenciante: ${document.getElementById("nombre-Congregacion").value}
+Nombre y Apellido Conferenciante: ${nombre}
+Título Conferencia: ${titulo}
+Número Conferencia: ${numero}
+Título Cántico: ${tituloCantico}
+Número Cántico: ${numeroCantico}
+Nombre Congregación Conferenciante: ${congregacion}
 
 Información de la reunión:
-Nombre y Apellido Presidente: ${document.getElementById("nom-Presidente").value}
-Oración Inicial: ${document.getElementById("oracion-Ini").value}
-Nombre y Apellido Lector: ${document.getElementById("nom-Lector").value}
-Oración Final: ${document.getElementById("oracion-Fin").value}`;
+Nombre y Apellido Presidente: ${presidente}
+Oración Inicial: ${oracionInicial}
+Nombre y Apellido Lector: ${lector}
+Oración Final: ${oracionFinal}`;
 
-            // 2. Copiar al portapapeles y mostrar feedback al usuario
             navigator.clipboard.writeText(texto)
-                .then(() => {
+                .then(function () {
                     const mensajeCopiado = document.getElementById("mensajeCopiado");
                     mensajeCopiado.style.display = "block";
 
-                    // Oculta el mensaje automáticamente después de 3 segundos
-                    setTimeout(() => {
+                    setTimeout(function () {
                         mensajeCopiado.style.display = "none";
                     }, 3000);
                 })
-                .catch(err => {
-                    console.error("Error al copiar el texto: ", err);
+                .catch(function (error) {
+                    console.error("Error al copiar el texto: ", error);
                 });
         }
 
-
         if ("serviceWorker" in navigator) {
-
             navigator.serviceWorker.register("service-worker.js")
-                .then(() => console.log("Service Worker registrado"))
-                .catch(err => console.log(err));
-
+                .then(function () {
+                    console.log("Service Worker registrado");
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-
     </script>
 
 </body>

@@ -48,17 +48,19 @@
             </div>
 
 
-            <button id="agregarNombre" class="btn" type="button">Tomar Información</button>
+            <button id="agregarNombre" class="btn" type="button">1. Tomar Información</button>
         </div>
 
         <div class="pitch-selector">
-            <label for="optionsSelect">1. Elige una opción de mensaje</label>
-            <select class="select" id="optionsSelect">
+            <label for="optionsSelect">2. Elige una opción de mensaje</label>
+            <select class="select" id="optionsSelect" disabled>
                 <option value="" disabled selected>Selecciona un mensaje</option>
             </select>
         </div>
 
-        <div class="contenedor" id="contenedorMensaje"></div>
+        <div class="contenedor" id="contenedorMensaje">
+
+        </div>
     </main>
 
 
@@ -83,17 +85,17 @@
     <script>
 
 let mensajes = [
-    "Buenas tardes, hermano. Espero que se encuentre muy bien. Le habla {{nombreUsuario}}, de la congregación Barrio Don Bosco. Le escribo para recordarle que este domingo a las 10:00 tendremos el gusto de recibirlo para la conferencia. ¡Lo esperamos con mucho gusto!",
+    "Buenas tardes, hermano. Espero que se encuentre muy bien. Le habla {{nombreUsuario}}, de la congregación {{congregacionUsuario}}. Le escribo para recordarle que este domingo a las 10:00 tendremos el gusto de recibirlo para la conferencia titulada «{{nombreConferencia}}» numero {{numeroConferencia}}. ¡Lo esperamos con mucho gusto!",
 
-    "¡Buenas tardes, hermano! ¿Cómo está? Soy {{nombreUsuario}}, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 tenemos programada su conferencia. Desde ya, muchas gracias por su disposición. ¡Será un gusto recibirlo!",
+    "¡Buenas tardes, hermano! ¿Cómo está? Soy {{nombreUsuario}}, de la congregación {{congregacionUsuario}}. Quería recordarle que este domingo a las 10:00 tenemos programada su conferencia titulada «{{nombreConferencia}}» numero {{numeroConferencia}}. Desde ya, muchas gracias por su disposición. ¡Será un gusto recibirlo!",
 
-    "Muy buenas tardes, hermano. Espero que esté pasando una linda semana. Le escribe {{nombreUsuario}}, de la congregación Barrio Don Bosco, para recordarle que este domingo a las 10:00 lo esperamos para su conferencia. ¡Que tenga una excelente tarde!",
+    "Muy buenas tardes, hermano. Espero que esté pasando una linda semana. Le escribe {{nombreUsuario}}, de la congregación {{congregacionUsuario}}, para recordarle que este domingo a las 10:00 lo esperamos para su conferencia. ¡Que tenga una excelente tarde!",
 
-    "Buenas tardes, hermano. Espero que se encuentre bien. Mi nombre es {{nombreUsuario}} y le escribo de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 presentará la conferencia titulada «{{nombreConferencia}}». ¡Será un placer contar con su presencia!",
+    "Buenas tardes, hermano. Espero que se encuentre bien. Mi nombre es {{nombreUsuario}} y le escribo de la congregación {{congregacionUsuario}}. Quería recordarle que este domingo a las 10:00 presentará la conferencia titulada «{{nombreConferencia}}» numero {{numeroConferencia}}. ¡Será un placer contar con su presencia!",
 
-    "¡Hola, hermano! Muy buenas tardes. Espero que se encuentre muy bien. Soy {{nombreUsuario}}, de la congregación Barrio Don Bosco. Me comunico para recordarle que este domingo a las 10:00 lo estaremos esperando para la conferencia. ¡Desde ya, muchas gracias y hasta el domingo!",
+    "¡Hola, hermano! Muy buenas tardes. Espero que se encuentre muy bien. Soy {{nombreUsuario}}, de la congregación {{congregacionUsuario}}. Me comunico para recordarle que este domingo a las 10:00 lo estaremos esperando para la conferencia titulada «{{nombreConferencia}}» numero {{numeroConferencia}}. ¡Desde ya, muchas gracias y hasta el domingo!",
 
-    "Buenas tardes, hermano. ¿Cómo está? Le habla {{nombreUsuario}}, de la congregación Barrio Don Bosco. Quería recordarle que este domingo a las 10:00 estará a cargo de la conferencia número {{numeroConferencia}}, titulada «{{nombreConferencia}}». Será un gusto recibirlo y compartir ese momento con usted. ¡Lo esperamos!"
+    "Buenas tardes, hermano. ¿Cómo está? Le habla {{nombreUsuario}}, de la congregación {{congregacionUsuario}}. Quería recordarle que este domingo a las 10:00 estará a cargo de la conferencia número {{numeroConferencia}}, titulada «{{nombreConferencia}}». Será un gusto recibirlo y compartir ese momento con usted. ¡Lo esperamos!"
 ];
 
 
@@ -104,7 +106,6 @@ let mensajes = [
         const estadoNombreUsuario = document.getElementById("estadoNombreUsuario");
         const nombreConferenciaInput = document.getElementById("NombreConferencial");
         const numeroConferenciaInput = document.getElementById("NumeroConferencial");
-        const boton = document.getElementById("agregarNombre");
 
 
         const nombreUsuario = [
@@ -112,9 +113,12 @@ let mensajes = [
             localStorage.getItem("apellidoUsuario")
         ].filter(Boolean).join(" ").trim();
         let nombreActual = "";
+        let nombreConferenciaActual = "";
+        let numeroConferenciaActual = "";
+        
 
         if (nombreUsuario) {
-            estadoNombreUsuario.textContent = `Los mensajes usarán tu nombre: ${nombreUsuario}.`;
+            estadoNombreUsuario.textContent = `Los mensajes usarán tu nombre: ${nombreUsuario}, y tu congregación: ${localStorage.getItem("congregacionUsuario")}.`;
         } else {
             estadoNombreUsuario.textContent = "Configura tu nombre y apellido en Inicio para personalizar los mensajes.";
         }
@@ -122,8 +126,10 @@ let mensajes = [
         function crearMensajeConNombre(mensaje, nombre) {
             const nombreLimpio = nombre.trim();
             const mensajeConNombreUsuario = mensaje.replace(/\{\{nombreUsuario\}\}/g, nombreUsuario);
-            const mensajeConNombreConferencia = mensajeConNombreUsuario.replace(/\{\{nombreConferencia\}\}/g, nombreConferenciaInput.value || "la conferencia");
-            const mensajeConNumeroConferencia = mensajeConNombreConferencia.replace(/\{\{numeroConferencia\}\}/g, numeroConferenciaInput.value || "el número de conferencia");
+            const mensajeConCongregacion = mensajeConNombreUsuario.replace(/\{\{congregacionUsuario\}\}/g, localStorage.getItem("congregacionUsuario") || "tu congregación");
+
+            const mensajeConNombreConferencia = mensajeConCongregacion.replace(/\{\{nombreConferencia\}\}/g, nombreConferenciaActual || "la conferencia");
+            const mensajeConNumeroConferencia = mensajeConNombreConferencia.replace(/\{\{numeroConferencia\}\}/g, numeroConferenciaActual || "el número de conferencia");
             if (!nombreLimpio) {
                 return mensajeConNumeroConferencia;
             }
@@ -194,13 +200,31 @@ let mensajes = [
             select.appendChild(opcion);
         });
 
+        select.addEventListener("change", function () {
+            renderMensajeSeleccionado();
+        });
+
         agregarNombreBtn.addEventListener("click", function () {
             nombreActual = nombreInput.value;
+            nombreConferenciaActual = nombreConferenciaInput.value;
+            numeroConferenciaActual = numeroConferenciaInput.value;
+            select.disabled = false;
 
             if (select.value !== "") {
                 renderMensajeSeleccionado();
             }
         });
+
+        boton.addEventListener("click", function () {
+            navigator.clipboard.writeText(texto);
+            boton.textContent = "¡Copiado!";
+
+            setTimeout(() => {
+                boton.textContent = "Copiar mensaje";
+            }, 1500);
+        });
+
+        
 
 
 
